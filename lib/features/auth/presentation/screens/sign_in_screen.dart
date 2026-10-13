@@ -9,7 +9,6 @@ import 'package:resido/features/auth/presentation/widgets/auth_top_bar.dart';
 import 'package:resido/features/auth/presentation/widgets/info_pill.dart';
 import 'package:resido/features/home/presentation/screens/home_shell.dart';
 
-
 /// 03. Sign In. "Sign In" only navigates to the Dashboard; no credentials
 /// are checked.
 class SignInScreen extends StatefulWidget {
@@ -24,7 +23,9 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   // Mock values shown in the Stitch design.
-  final _email = TextEditingController(text: 'menon.properties.kochi@gmail.com');
+  final _email = TextEditingController(
+    text: 'menon.properties.kochi@gmail.com',
+  );
   final _password = TextEditingController(text: 'Kochi@2024Estate!');
   bool _obscurePassword = true;
   bool _rememberMe = true;
@@ -127,17 +128,21 @@ class _SignInScreenState extends State<SignInScreen> {
                         icon: _obscurePassword
                             ? Icons.visibility
                             : Icons.visibility_off_outlined,
-                        tooltip: _obscurePassword ? 'Show password' : 'Hide password',
+                        tooltip: _obscurePassword
+                            ? 'Show password'
+                            : 'Hide password',
                         color: AppColors.primaryContainer,
                         size: 36,
-                        onPressed: () =>
-                            setState(() => _obscurePassword = !_obscurePassword),
+                        onPressed: () => setState(
+                          () => _obscurePassword = !_obscurePassword,
+                        ),
                       ),
                     ),
                     const SizedBox(height: 20),
                     _OptionsRow(
                       rememberMe: _rememberMe,
-                      onRememberMeChanged: (v) => setState(() => _rememberMe = v),
+                      onRememberMeChanged: (v) =>
+                          setState(() => _rememberMe = v),
                     ),
                     const SizedBox(height: 20),
                     AppButton(
@@ -182,8 +187,13 @@ class _Intro extends StatelessWidget {
                   label: 'Kerala Landlord Portal',
                   background: AppColors.surfaceContainer,
                   foreground: AppColors.primary,
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                  textStyle: AppTextStyles.labelMd.copyWith(letterSpacing: 0.55),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 4,
+                  ),
+                  textStyle: AppTextStyles.labelMd.copyWith(
+                    letterSpacing: 0.55,
+                  ),
                 ),
               ),
             ],
@@ -211,7 +221,10 @@ class _Intro extends StatelessWidget {
 }
 
 class _OptionsRow extends StatelessWidget {
-  const _OptionsRow({required this.rememberMe, required this.onRememberMeChanged});
+  const _OptionsRow({
+    required this.rememberMe,
+    required this.onRememberMeChanged,
+  });
 
   final bool rememberMe;
   final ValueChanged<bool> onRememberMeChanged;
@@ -314,7 +327,8 @@ class _TrustCallout extends StatelessWidget {
                     ),
                   ),
                   const TextSpan(
-                    text: ' • Secure 256-bit encryption for landlord & '
+                    text:
+                        ' • Secure 256-bit encryption for landlord & '
                         'tenancy records',
                   ),
                 ],
@@ -339,7 +353,9 @@ class _CreateAccountPrompt extends StatelessWidget {
       children: [
         Text(
           "Don't have an account yet?",
-          style: AppTextStyles.bodyMd.copyWith(color: AppColors.onSurfaceVariant),
+          style: AppTextStyles.bodyMd.copyWith(
+            color: AppColors.onSurfaceVariant,
+          ),
         ),
         const SizedBox(width: 4),
         InkWell(

@@ -4,8 +4,6 @@ import 'package:resido/app/theme/app_text_styles.dart';
 import 'package:resido/core/widgets/app_card.dart';
 import 'package:resido/features/notifications/data/notifications_mock_data.dart';
 
-
-
 /// One notification: tinted icon tile, title with unread dot, two-line
 /// body, time + status line and an optional action chip.
 class NotificationCard extends StatelessWidget {
@@ -26,38 +24,40 @@ class NotificationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final (tileBg, tileFg, icon, statusColor) = switch (item.tone) {
       NotificationTone.critical => (
-          AppColors.tertiaryFixed,
-          AppColors.tertiary,
-          Icons.warning_amber,
-          AppColors.error,
-        ),
+        AppColors.tertiaryFixed,
+        AppColors.tertiary,
+        Icons.warning_amber,
+        AppColors.error,
+      ),
       NotificationTone.success => (
-          AppColors.secondaryContainer,
-          AppColors.onSecondaryContainer,
-          Icons.check_circle_outline,
-          AppColors.secondary,
-        ),
+        AppColors.secondaryContainer,
+        AppColors.onSecondaryContainer,
+        Icons.check_circle_outline,
+        AppColors.secondary,
+      ),
       NotificationTone.info => (
-          AppColors.surfaceContainerHigh,
-          AppColors.primaryContainer,
-          Icons.plumbing,
-          AppColors.onSurface,
-        ),
+        AppColors.surfaceContainerHigh,
+        AppColors.primaryContainer,
+        Icons.plumbing,
+        AppColors.onSurface,
+      ),
       NotificationTone.upcoming => (
-          AppColors.surfaceContainer,
-          AppColors.secondary,
-          Icons.event_outlined,
-          AppColors.tertiaryContainer,
-        ),
+        AppColors.surfaceContainer,
+        AppColors.secondary,
+        Icons.event_outlined,
+        AppColors.tertiaryContainer,
+      ),
       NotificationTone.compliant => (
-          AppColors.secondaryContainer,
-          AppColors.onSecondaryContainer,
-          Icons.verified_user_outlined,
-          AppColors.secondary,
-        ),
+        AppColors.secondaryContainer,
+        AppColors.onSecondaryContainer,
+        Icons.verified_user_outlined,
+        AppColors.secondary,
+      ),
     };
 
-    final meta = AppTextStyles.bodySm.copyWith(color: AppColors.onSurfaceVariant);
+    final meta = AppTextStyles.bodySm.copyWith(
+      color: AppColors.onSurfaceVariant,
+    );
 
     return AppCard(
       padding: const EdgeInsets.all(12),
@@ -120,7 +120,11 @@ class NotificationCard extends StatelessWidget {
                     const SizedBox(height: 8),
                     Row(
                       children: [
-                        const Icon(Icons.schedule, size: 14, color: AppColors.onSurfaceVariant),
+                        const Icon(
+                          Icons.schedule,
+                          size: 14,
+                          color: AppColors.onSurfaceVariant,
+                        ),
                         const SizedBox(width: 4),
                         Text(item.timeAgo, style: meta),
                         const SizedBox(width: 4),
@@ -167,17 +171,17 @@ class _ActionChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final (bg, fg, icon, label) = switch (action) {
       NotificationAction.whatsAppReminder => (
-          AppColors.secondaryFixed,
-          AppColors.onSecondaryFixed,
-          Icons.chat_outlined,
-          'Send WhatsApp Reminder',
-        ),
+        AppColors.secondaryFixed,
+        AppColors.onSecondaryFixed,
+        Icons.chat_outlined,
+        'Send WhatsApp Reminder',
+      ),
       NotificationAction.viewReceipt => (
-          AppColors.surfaceContainerHigh,
-          AppColors.onSurface,
-          Icons.receipt_long_outlined,
-          'View Receipt',
-        ),
+        AppColors.surfaceContainerHigh,
+        AppColors.onSurface,
+        Icons.receipt_long_outlined,
+        'View Receipt',
+      ),
     };
     return Material(
       color: bg,

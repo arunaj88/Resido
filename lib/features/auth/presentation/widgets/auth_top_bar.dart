@@ -5,7 +5,6 @@ import 'package:resido/app/theme/app_colors.dart';
 import 'package:resido/app/theme/app_text_styles.dart';
 import 'package:resido/core/widgets/resido_logo.dart';
 
-
 /// Frosted 64px header shared by the auth screens: back button, Resido
 /// wordmark, an optional title and a screen-specific trailing widget.
 class AuthTopBar extends StatelessWidget implements PreferredSizeWidget {
@@ -38,7 +37,11 @@ class AuthTopBar extends StatelessWidget implements PreferredSizeWidget {
     return DecoratedBox(
       decoration: const BoxDecoration(
         boxShadow: [
-          BoxShadow(color: Color(0x0A000000), offset: Offset(0, 1), blurRadius: 8),
+          BoxShadow(
+            color: Color(0x0A000000),
+            offset: Offset(0, 1),
+            blurRadius: 8,
+          ),
         ],
       ),
       child: ClipRect(
@@ -60,7 +63,8 @@ class AuthTopBar extends StatelessWidget implements PreferredSizeWidget {
                         child: IconButton(
                           tooltip: 'Back',
                           padding: EdgeInsets.zero,
-                          onPressed: onBack ?? () => Navigator.of(context).maybePop(),
+                          onPressed:
+                              onBack ?? () => Navigator.of(context).maybePop(),
                           icon: Icon(
                             Icons.arrow_back,
                             size: backIconSize,
@@ -83,7 +87,9 @@ class AuthTopBar extends StatelessWidget implements PreferredSizeWidget {
                         child: title == null
                             ? const SizedBox.shrink()
                             : Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 8),
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                ),
                                 child: Text(
                                   title!,
                                   textAlign: TextAlign.center,

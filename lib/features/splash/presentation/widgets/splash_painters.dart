@@ -3,8 +3,6 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:resido/app/theme/app_colors.dart';
 
-
-
 /// The splash brand mark (gold roof over an emerald arch), drawn from the
 /// inline SVG in the Stitch splash design (64×64 view box).
 class SplashMarkPainter extends CustomPainter {
@@ -108,7 +106,9 @@ class SplashLatticePainter extends CustomPainter {
     final fill = Paint()..color = _emerald;
 
     canvas.save();
-    canvas.clipPath(Path()..addOval(Rect.fromCircle(center: center, radius: 190)));
+    canvas.clipPath(
+      Path()..addOval(Rect.fromCircle(center: center, radius: 190)),
+    );
     for (var x = 0.0; x < 400; x += 40) {
       for (var y = 0.0; y < 400; y += 40) {
         final diamond = Path()
@@ -120,8 +120,22 @@ class SplashLatticePainter extends CustomPainter {
         canvas.drawPath(diamond, stroke..strokeWidth = 0.6);
         canvas.drawCircle(Offset(x + 20, y + 20), 2.5, fill);
         stroke.strokeWidth = 0.4;
-        _dashedLine(canvas, Offset(x + 20, y), Offset(x + 20, y + 40), 2, 2, stroke);
-        _dashedLine(canvas, Offset(x, y + 20), Offset(x + 40, y + 20), 2, 2, stroke);
+        _dashedLine(
+          canvas,
+          Offset(x + 20, y),
+          Offset(x + 20, y + 40),
+          2,
+          2,
+          stroke,
+        );
+        _dashedLine(
+          canvas,
+          Offset(x, y + 20),
+          Offset(x + 40, y + 20),
+          2,
+          2,
+          stroke,
+        );
       }
     }
     canvas.restore();

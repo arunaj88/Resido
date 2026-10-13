@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:resido/app/theme/app_text_styles.dart';
 
-
-
 /// Rounded-full tag with an optional leading icon (status / section badges).
 class InfoPill extends StatelessWidget {
   const InfoPill({
@@ -30,9 +28,9 @@ class InfoPill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final style = (textStyle ??
-            AppTextStyles.labelSm.copyWith(letterSpacing: 0.5))
-        .copyWith(color: foreground);
+    final style =
+        (textStyle ?? AppTextStyles.labelSm.copyWith(letterSpacing: 0.5))
+            .copyWith(color: foreground);
     return Container(
       padding: padding,
       decoration: BoxDecoration(

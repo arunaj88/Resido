@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:resido/app/theme/app_colors.dart';
 import 'package:resido/app/theme/app_text_styles.dart';
 
-
-
 /// The five persistent destinations from Stitch "07. Main Navigation".
 enum HomeTab {
   dashboard('Dashboard', Icons.grid_view, Icons.grid_view_outlined),
@@ -40,7 +38,11 @@ class ResidoBottomNav extends StatelessWidget {
     return DecoratedBox(
       decoration: const BoxDecoration(
         boxShadow: [
-          BoxShadow(color: Color(0x0F064E3B), offset: Offset(0, -2), blurRadius: 12),
+          BoxShadow(
+            color: Color(0x0F064E3B),
+            offset: Offset(0, -2),
+            blurRadius: 12,
+          ),
         ],
       ),
       child: ClipRect(
@@ -77,7 +79,11 @@ class ResidoBottomNav extends StatelessWidget {
 }
 
 class _NavItem extends StatefulWidget {
-  const _NavItem({required this.tab, required this.selected, required this.onTap});
+  const _NavItem({
+    required this.tab,
+    required this.selected,
+    required this.onTap,
+  });
 
   final HomeTab tab;
   final bool selected;
@@ -96,7 +102,9 @@ class _NavItemState extends State<_NavItem> {
 
   @override
   Widget build(BuildContext context) {
-    final color = widget.selected ? AppColors.primaryContainer : AppColors.outline;
+    final color = widget.selected
+        ? AppColors.primaryContainer
+        : AppColors.outline;
     return Semantics(
       button: true,
       selected: widget.selected,
@@ -123,7 +131,9 @@ class _NavItemState extends State<_NavItem> {
                   alignment: Alignment.center,
                   children: [
                     Icon(
-                      widget.selected ? widget.tab.selectedIcon : widget.tab.icon,
+                      widget.selected
+                          ? widget.tab.selectedIcon
+                          : widget.tab.icon,
                       size: 22,
                       color: color,
                     ),
@@ -149,7 +159,9 @@ class _NavItemState extends State<_NavItem> {
                 overflow: TextOverflow.ellipsis,
                 style: AppTextStyles.labelSm.copyWith(
                   color: color,
-                  fontWeight: widget.selected ? FontWeight.w600 : FontWeight.w500,
+                  fontWeight: widget.selected
+                      ? FontWeight.w600
+                      : FontWeight.w500,
                 ),
               ),
             ],

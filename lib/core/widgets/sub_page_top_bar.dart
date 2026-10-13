@@ -13,6 +13,9 @@ class SubPageTopBar extends StatelessWidget implements PreferredSizeWidget {
     this.titleStyle,
     this.showMore = false,
     this.onMore,
+    this.showEdit = false,
+    this.onEdit,
+    this.showAvatar = true,
   });
 
   final String title;
@@ -22,6 +25,13 @@ class SubPageTopBar extends StatelessWidget implements PreferredSizeWidget {
   /// display-only (no menu is designed yet).
   final bool showMore;
   final VoidCallback? onMore;
+
+  /// Shows the design's "edit" icon button (display-only without [onEdit]).
+  final bool showEdit;
+  final VoidCallback? onEdit;
+
+  /// The tenant screens' header has no avatar.
+  final bool showAvatar;
 
   static const barHeight = 64.0;
 
@@ -80,6 +90,21 @@ class SubPageTopBar extends StatelessWidget implements PreferredSizeWidget {
                               ),
                         ),
                       ),
+                      if (showEdit)
+                        SizedBox(
+                          width: 44,
+                          height: 44,
+                          child: IconButton(
+                            tooltip: 'Edit',
+                            padding: EdgeInsets.zero,
+                            onPressed: onEdit ?? () {},
+                            icon: const Icon(
+                              Icons.edit_outlined,
+                              size: 22,
+                              color: AppColors.onSurfaceVariant,
+                            ),
+                          ),
+                        ),
                       if (showMore)
                         SizedBox(
                           width: 44,
@@ -95,20 +120,22 @@ class SubPageTopBar extends StatelessWidget implements PreferredSizeWidget {
                             ),
                           ),
                         ),
-                      const SizedBox(width: 4),
-                      Container(
-                        width: 32,
-                        height: 32,
-                        decoration: const BoxDecoration(
-                          color: AppColors.primary,
-                          shape: BoxShape.circle,
+                      if (showAvatar) ...[
+                        const SizedBox(width: 4),
+                        Container(
+                          width: 32,
+                          height: 32,
+                          decoration: const BoxDecoration(
+                            color: AppColors.primary,
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(
+                            Icons.person,
+                            size: 18,
+                            color: AppColors.onPrimary,
+                          ),
                         ),
-                        child: const Icon(
-                          Icons.person,
-                          size: 18,
-                          color: AppColors.onPrimary,
-                        ),
-                      ),
+                      ],
                     ],
                   ),
                 ),

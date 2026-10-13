@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:resido/app/theme/app_colors.dart';
 
-
-
 /// White, 12px-radius surface with the Tailwind `shadow-sm` used for most
 /// cards in the Stitch designs. Becomes tappable when [onTap] is set.
 class AppCard extends StatelessWidget {
@@ -29,7 +27,10 @@ class AppCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final borderRadius = BorderRadius.circular(radius);
     return DecoratedBox(
-      decoration: BoxDecoration(borderRadius: borderRadius, boxShadow: AppShadows.sm),
+      decoration: BoxDecoration(
+        borderRadius: borderRadius,
+        boxShadow: AppShadows.sm,
+      ),
       child: Material(
         color: color,
         borderRadius: borderRadius,

@@ -5,7 +5,6 @@ import 'package:resido/core/utils/inr_format.dart';
 import 'package:resido/core/widgets/app_card.dart';
 import 'package:resido/features/dashboard/data/dashboard_mock_data.dart';
 
-
 /// 2×2 portfolio snapshot: estates, capacity, occupancy, turnover.
 class MetricGrid extends StatelessWidget {
   const MetricGrid({super.key});
@@ -54,15 +53,15 @@ class MetricGrid extends StatelessWidget {
   }
 
   Widget _row(Widget a, Widget b) => IntrinsicHeight(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Expanded(child: a),
-            const SizedBox(width: 12),
-            Expanded(child: b),
-          ],
-        ),
-      );
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Expanded(child: a),
+        const SizedBox(width: 12),
+        Expanded(child: b),
+      ],
+    ),
+  );
 }
 
 enum _SuffixStyle { units, status }
@@ -84,16 +83,18 @@ class _MetricCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final value = AppTextStyles.headlineMd.copyWith(fontWeight: FontWeight.w700);
+    final value = AppTextStyles.headlineMd.copyWith(
+      fontWeight: FontWeight.w700,
+    );
     final suffix = switch (suffixStyle) {
       _SuffixStyle.units => AppTextStyles.labelLg.copyWith(
-          fontWeight: FontWeight.w400,
-          color: AppColors.outline,
-        ),
+        fontWeight: FontWeight.w400,
+        color: AppColors.outline,
+      ),
       _SuffixStyle.status => AppTextStyles.labelSm.copyWith(
-          fontWeight: FontWeight.w600,
-          color: accent,
-        ),
+        fontWeight: FontWeight.w600,
+        color: accent,
+      ),
       null => null,
     };
     return AppCard(
@@ -106,7 +107,9 @@ class _MetricCard extends StatelessWidget {
               Expanded(
                 child: Text(
                   metric.label.toUpperCase(),
-                  style: AppTextStyles.labelMd.copyWith(color: AppColors.outline),
+                  style: AppTextStyles.labelMd.copyWith(
+                    color: AppColors.outline,
+                  ),
                 ),
               ),
               marker,
@@ -214,14 +217,19 @@ class RentCollectionCard extends StatelessWidget {
                     ),
                     Text(
                       DashboardMockData.rentCycleNote,
-                      style: AppTextStyles.bodySm.copyWith(color: AppColors.outline),
+                      style: AppTextStyles.bodySm.copyWith(
+                        color: AppColors.outline,
+                      ),
                     ),
                   ],
                 ),
               ),
               const SizedBox(width: 8),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 4,
+                ),
                 decoration: BoxDecoration(
                   color: AppColors.secondaryContainer,
                   borderRadius: BorderRadius.circular(999),
@@ -229,7 +237,11 @@ class RentCollectionCard extends StatelessWidget {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Icon(Icons.trending_up, size: 14, color: AppColors.onSecondaryContainer),
+                    const Icon(
+                      Icons.trending_up,
+                      size: 14,
+                      color: AppColors.onSecondaryContainer,
+                    ),
                     const SizedBox(width: 4),
                     Text(
                       '$d% Collected',
@@ -255,7 +267,8 @@ class RentCollectionCard extends StatelessWidget {
                     labelColor: AppColors.secondary,
                     amount: InrFormat.full(DashboardMockData.rentReceived),
                     amountColor: AppColors.primaryContainer,
-                    note: 'Target: ${InrFormat.full(DashboardMockData.rentTarget)}',
+                    note:
+                        'Target: ${InrFormat.full(DashboardMockData.rentTarget)}',
                     noteColor: AppColors.outline,
                   ),
                 ),
@@ -268,7 +281,8 @@ class RentCollectionCard extends StatelessWidget {
                     labelColor: AppColors.onTertiaryFixedVariant,
                     amount: InrFormat.full(DashboardMockData.rentPending),
                     amountColor: AppColors.onTertiaryFixed,
-                    note: '${DashboardMockData.rentOutstandingUnits} Outstanding units',
+                    note:
+                        '${DashboardMockData.rentOutstandingUnits} Outstanding units',
                     noteColor: AppColors.onTertiaryFixedVariant,
                   ),
                 ),
@@ -289,7 +303,9 @@ class RentCollectionCard extends StatelessWidget {
                   ),
                   Expanded(
                     flex: 100 - d,
-                    child: const ColoredBox(color: AppColors.onTertiaryContainer),
+                    child: const ColoredBox(
+                      color: AppColors.onTertiaryContainer,
+                    ),
                   ),
                 ],
               ),
@@ -363,7 +379,9 @@ class _AmountTile extends StatelessWidget {
             alignment: Alignment.centerLeft,
             child: Text(
               amount,
-              style: AppTextStyles.currencyDisplayMobile.copyWith(color: amountColor),
+              style: AppTextStyles.currencyDisplayMobile.copyWith(
+                color: amountColor,
+              ),
             ),
           ),
           const SizedBox(height: 2),

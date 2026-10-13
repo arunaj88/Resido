@@ -8,8 +8,9 @@ import 'package:resido/features/splash/presentation/screens/splash_screen.dart';
 import 'test_helpers.dart';
 
 void main() {
-  testWidgets('App launches on the splash screen, then shows Welcome',
-      (tester) async {
+  testWidgets('App launches on the splash screen, then shows Welcome', (
+    tester,
+  ) async {
     useMobileViewport(tester);
     await tester.pumpWidget(const ResidoApp());
 

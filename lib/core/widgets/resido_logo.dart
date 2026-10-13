@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:resido/app/theme/app_colors.dart';
 
-
-
 /// The Resido app logo (house + keyhole) exported from Stitch.
 class ResidoLogo extends StatelessWidget {
   const ResidoLogo({super.key, this.size = 28, this.borderRadius = 0});

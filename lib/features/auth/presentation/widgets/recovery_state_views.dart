@@ -5,7 +5,6 @@ import 'package:resido/core/widgets/app_button.dart';
 import 'package:resido/features/auth/presentation/widgets/auth_text_field.dart';
 import 'package:resido/features/auth/presentation/widgets/info_pill.dart';
 
-
 /// Mock address shown in the approved recovery designs.
 const _mockEmail = 'menon.properties.kochi@gmail.com';
 
@@ -43,7 +42,8 @@ class LinkSentView extends StatelessWidget {
         iconColor: AppColors.onPrimaryContainer,
         title: 'Valid for 15 minutes',
         titleColor: AppColors.primary,
-        body: "If you don't see the email within a couple minutes, please check "
+        body:
+            "If you don't see the email within a couple minutes, please check "
             'your spam folder or request a new link below.',
       ),
       cardSpacing: 12,
@@ -103,7 +103,8 @@ class FailedView extends StatelessWidget {
         iconColor: AppColors.onError,
         title: 'Diagnostic Status',
         titleColor: AppColors.onSurface,
-        body: 'Verification gateway timed out (ERR_GATEWAY_TIMEOUT). Secure '
+        body:
+            'Verification gateway timed out (ERR_GATEWAY_TIMEOUT). Secure '
             'records remain unsynchronized.',
       ),
       cardSpacing: 16,
@@ -151,7 +152,8 @@ class VerifyAccountView extends StatelessWidget {
       title: 'Confirm Your Email',
       // Worded as what happens next, not as a completed sign-up.
       body: const _BodyWithEmail(
-        before: 'A verification link will be sent to your inbox once your '
+        before:
+            'A verification link will be sent to your inbox once your '
             'landlord account is set up. Please verify before signing in.',
       ),
       card: const _InfoCard(
@@ -160,7 +162,8 @@ class VerifyAccountView extends StatelessWidget {
         iconColor: AppColors.onPrimaryContainer,
         title: 'Pending Verification',
         titleColor: AppColors.primary,
-        body: 'Your profile is currently unverified. Account management '
+        body:
+            'Your profile is currently unverified. Account management '
             'features will unlock immediately once the link is confirmed.',
       ),
       cardSpacing: 12,
@@ -228,7 +231,9 @@ class _SubmittingViewState extends State<SubmittingView> {
         Text(
           'Please wait while we authenticate your ownership profile with '
           'Resido Cloud.',
-          style: AppTextStyles.bodyMd.copyWith(color: AppColors.onSurfaceVariant),
+          style: AppTextStyles.bodyMd.copyWith(
+            color: AppColors.onSurfaceVariant,
+          ),
         ),
         const SizedBox(height: 16),
         Container(
@@ -259,7 +264,11 @@ class _SubmittingViewState extends State<SubmittingView> {
                 fillColor: AppColors.surfaceContainerLow,
                 shadows: const [],
                 textStyle: AppTextStyles.bodyMd.copyWith(color: muted),
-                suffix: const Icon(Icons.lock_outline, size: 20, color: AppColors.secondary),
+                suffix: const Icon(
+                  Icons.lock_outline,
+                  size: 20,
+                  color: AppColors.secondary,
+                ),
               ),
               const SizedBox(height: 4),
               Text(
@@ -534,7 +543,10 @@ class _InfoCard extends StatelessWidget {
             width: 28,
             height: 28,
             margin: const EdgeInsets.only(top: 2),
-            decoration: BoxDecoration(color: iconBackground, shape: BoxShape.circle),
+            decoration: BoxDecoration(
+              color: iconBackground,
+              shape: BoxShape.circle,
+            ),
             child: Icon(icon, size: 16, color: iconColor),
           ),
           const SizedBox(width: 8),
@@ -542,7 +554,10 @@ class _InfoCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title, style: AppTextStyles.titleLg.copyWith(color: titleColor)),
+                Text(
+                  title,
+                  style: AppTextStyles.titleLg.copyWith(color: titleColor),
+                ),
                 const SizedBox(height: 2),
                 Text(
                   body,

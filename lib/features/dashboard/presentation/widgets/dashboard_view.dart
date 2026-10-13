@@ -34,13 +34,14 @@ class DashboardView extends StatelessWidget {
         QuickActionsSection(
           onAddProperty: () =>
               Navigator.of(context).pushNamed(AppRoutes.addProperty),
-          onAddTenant: () => soon('Add Tenant', Icons.person_add_outlined),
+          onAddTenant: () =>
+              Navigator.of(context).pushNamed(AppRoutes.addTenant),
           onRecordRent: () => soon('Record Rent', Icons.payments_outlined),
         ),
         const SizedBox(height: 24),
         PendingActionsSection(
           onAssignPlumber: () =>
-              soon('Maintenance Request', Icons.engineering_outlined),
+              Navigator.of(context).pushNamed(AppRoutes.maintenance),
         ),
         const SizedBox(height: 24),
         SpotlightSection(

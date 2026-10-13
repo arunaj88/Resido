@@ -3,7 +3,6 @@ library;
 
 import 'package:resido/core/utils/inr_format.dart';
 
-
 enum NotificationCategory { rent, maintenance, system }
 
 enum NotificationTone { critical, success, info, upcoming, compliant }
@@ -46,7 +45,8 @@ abstract final class NotificationsMockData {
       section: NotificationSection.today,
       tone: NotificationTone.critical,
       title: 'Rent Overdue — Green Valley Villa 2',
-      body: '${InrFormat.full(11000)} payment from Ananya Nair was due on 20 Oct '
+      body:
+          '${InrFormat.full(11000)} payment from Ananya Nair was due on 20 Oct '
           '(4 days overdue).',
       timeAgo: '10 mins ago',
       statusLabel: 'Critical',
@@ -70,7 +70,8 @@ abstract final class NotificationsMockData {
       section: NotificationSection.today,
       tone: NotificationTone.info,
       title: 'Plumbing Request Updated',
-      body: 'Technician assigned for Riverdale #104. Scheduled inspection '
+      body:
+          'Technician assigned for Riverdale #104. Scheduled inspection '
           'today 3:00 PM.',
       timeAgo: '4 hours ago',
       statusLabel: 'In Progress',
@@ -92,7 +93,8 @@ abstract final class NotificationsMockData {
       section: NotificationSection.earlierThisWeek,
       tone: NotificationTone.compliant,
       title: 'Tenant Police Verification Approved',
-      body: 'Local station verification cleared for Dr. Thomas K. '
+      body:
+          'Local station verification cleared for Dr. Thomas K. '
           '(Aluva Villa).',
       timeAgo: '4 days ago',
       statusLabel: 'Compliant',

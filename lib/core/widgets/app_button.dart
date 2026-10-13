@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:resido/app/theme/app_colors.dart';
 import 'package:resido/app/theme/app_text_styles.dart';
 
-
 /// The 52px, 12px-radius action button used across the Stitch designs.
 ///
 /// Defaults to the Deep Emerald primary style; pass colours for the white
@@ -46,7 +45,8 @@ class AppButton extends StatelessWidget {
     final style = (textStyle ?? AppTextStyles.titleLg).copyWith(
       color: foregroundColor,
     );
-    final leadingWidget = leading ??
+    final leadingWidget =
+        leading ??
         (leadingIcon == null
             ? null
             : Icon(leadingIcon, size: iconSize, color: foregroundColor));

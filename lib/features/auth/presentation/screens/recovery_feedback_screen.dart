@@ -6,8 +6,6 @@ import 'package:resido/features/auth/presentation/widgets/auth_top_bar.dart';
 import 'package:resido/features/auth/presentation/widgets/recovery_state_tabs.dart';
 import 'package:resido/features/auth/presentation/widgets/recovery_state_views.dart';
 
-
-
 /// The four presentation states from "05. Recovery Feedback States".
 enum RecoveryFeedbackState { linkSent, failed, verifyAccount, submitting }
 
@@ -65,16 +63,17 @@ class _RecoveryFeedbackScreenState extends State<RecoveryFeedbackScreen> {
                 child: KeyedSubtree(
                   key: ValueKey(_state),
                   child: switch (_state) {
-                    RecoveryFeedbackState.linkSent =>
-                      LinkSentView(onReturnToSignIn: _toSignIn),
+                    RecoveryFeedbackState.linkSent => LinkSentView(
+                      onReturnToSignIn: _toSignIn,
+                    ),
                     RecoveryFeedbackState.failed => FailedView(
-                        onRetry: () => Navigator.of(context).maybePop(),
-                        onBackToSignIn: _toSignIn,
-                      ),
+                      onRetry: () => Navigator.of(context).maybePop(),
+                      onBackToSignIn: _toSignIn,
+                    ),
                     RecoveryFeedbackState.verifyAccount => VerifyAccountView(
-                        onGoToSignIn: () =>
-                            AppRoutes.openSignIn(context, newAccount: true),
-                      ),
+                      onGoToSignIn: () =>
+                          AppRoutes.openSignIn(context, newAccount: true),
+                    ),
                     RecoveryFeedbackState.submitting => const SubmittingView(),
                   },
                 ),

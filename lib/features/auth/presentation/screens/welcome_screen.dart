@@ -9,7 +9,6 @@ import 'package:resido/core/widgets/pulse.dart';
 import 'package:resido/core/widgets/resido_logo.dart';
 import 'package:resido/features/auth/presentation/widgets/info_pill.dart';
 
-
 /// 01. Welcome Screen.
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -44,7 +43,8 @@ class WelcomeScreen extends StatelessWidget {
                 label: 'Sign In',
                 backgroundColor: AppColors.surfaceContainerLowest,
                 foregroundColor: AppColors.onSurface,
-                onPressed: () => Navigator.of(context).pushNamed(AppRoutes.signIn),
+                onPressed: () =>
+                    Navigator.of(context).pushNamed(AppRoutes.signIn),
               ),
               const SizedBox(height: 12),
               const _NriFootnote(),
@@ -85,7 +85,9 @@ class _BrandHeader extends StatelessWidget {
                   'Property Management for India',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: AppTextStyles.labelSm.copyWith(color: AppColors.outline),
+                  style: AppTextStyles.labelSm.copyWith(
+                    color: AppColors.outline,
+                  ),
                 ),
               ],
             ),
@@ -130,7 +132,12 @@ class _HeroImage extends StatelessWidget {
                 ),
               ),
             ),
-            const Positioned(left: 12, right: 12, bottom: 12, child: _RegionBar()),
+            const Positioned(
+              left: 12,
+              right: 12,
+              bottom: 12,
+              child: _RegionBar(),
+            ),
           ],
         ),
       ),
@@ -156,7 +163,11 @@ class _RegionBar extends StatelessWidget {
           ),
           child: Row(
             children: [
-              const StatusDot(color: AppColors.secondary, size: 10, pulsing: true),
+              const StatusDot(
+                color: AppColors.secondary,
+                size: 10,
+                pulsing: true,
+              ),
               const SizedBox(width: 8),
               Expanded(
                 child: Text(

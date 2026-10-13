@@ -16,8 +16,10 @@ class _PulseState extends State<Pulse> with SingleTickerProviderStateMixin {
     duration: const Duration(milliseconds: 1000),
   )..repeat(reverse: true);
 
-  late final Animation<double> _opacity = Tween<double>(begin: 1, end: 0.5)
-      .animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
+  late final Animation<double> _opacity = Tween<double>(
+    begin: 1,
+    end: 0.5,
+  ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
 
   @override
   void dispose() {

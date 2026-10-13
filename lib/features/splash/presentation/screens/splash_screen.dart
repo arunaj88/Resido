@@ -7,8 +7,6 @@ import 'package:resido/app/theme/app_text_styles.dart';
 import 'package:resido/core/widgets/pulse.dart';
 import 'package:resido/features/splash/presentation/widgets/splash_painters.dart';
 
-
-
 /// 00. Splash Screen — presentation only. The progress bar is a timed
 /// animation; nothing is loaded or checked before moving on to Welcome.
 class SplashScreen extends StatefulWidget {
@@ -52,11 +50,7 @@ class _SplashScreenState extends State<SplashScreen>
           gradient: RadialGradient(
             center: Alignment(0, -0.28),
             radius: 1.47,
-            colors: [
-              Color(0xB3ECFDF5),
-              Color(0xF2F8FAFC),
-              Color(0xFFF8FAFC),
-            ],
+            colors: [Color(0xB3ECFDF5), Color(0xF2F8FAFC), Color(0xFFF8FAFC)],
             stops: [0, 0.55, 1],
           ),
         ),
@@ -111,7 +105,11 @@ class _Backdrop extends StatelessWidget {
           ),
           Positioned(
             bottom: 80,
-            child: _Bloom(width: 384, height: 192, color: AppColors.tertiaryFixed),
+            child: _Bloom(
+              width: 384,
+              height: 192,
+              color: AppColors.tertiaryFixed,
+            ),
           ),
         ],
       ),
@@ -120,7 +118,11 @@ class _Backdrop extends StatelessWidget {
 }
 
 class _Bloom extends StatelessWidget {
-  const _Bloom({required this.width, required this.height, required this.color});
+  const _Bloom({
+    required this.width,
+    required this.height,
+    required this.color,
+  });
 
   final double width;
   final double height;
@@ -137,7 +139,9 @@ class _Bloom extends StatelessWidget {
           height: height,
           decoration: BoxDecoration(
             color: color,
-            borderRadius: BorderRadius.all(Radius.elliptical(width / 2, height / 2)),
+            borderRadius: BorderRadius.all(
+              Radius.elliptical(width / 2, height / 2),
+            ),
           ),
         ),
       ),
@@ -381,7 +385,8 @@ class _ProgressTrack extends StatelessWidget {
       child: AnimatedBuilder(
         animation: progress,
         builder: (context, _) {
-          final value = _start + (1 - _start) * Curves.easeOut.transform(progress.value);
+          final value =
+              _start + (1 - _start) * Curves.easeOut.transform(progress.value);
           return FractionallySizedBox(
             widthFactor: value,
             heightFactor: 1,

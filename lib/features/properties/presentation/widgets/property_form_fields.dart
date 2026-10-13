@@ -284,6 +284,9 @@ class FormTextInput extends StatefulWidget {
     this.inputFormatters,
     this.onChanged,
     this.errorBorder = false,
+    this.radius = 8,
+    this.fillColor = AppColors.surfaceContainerLowest,
+    this.focusedFillColor = AppColors.surfaceContainerLow,
   });
 
   final TextEditingController controller;
@@ -301,6 +304,9 @@ class FormTextInput extends StatefulWidget {
 
   /// Highlights the field in the error colour (presentation-only feedback).
   final bool errorBorder;
+  final double radius;
+  final Color fillColor;
+  final Color focusedFillColor;
 
   @override
   State<FormTextInput> createState() => _FormTextInputState();
@@ -329,10 +335,8 @@ class _FormTextInputState extends State<FormTextInput> {
       duration: const Duration(milliseconds: 150),
       constraints: BoxConstraints(minHeight: multiline ? 0 : 48),
       decoration: BoxDecoration(
-        color: _focus.hasFocus
-            ? AppColors.surfaceContainerLow
-            : AppColors.surfaceContainerLowest,
-        borderRadius: BorderRadius.circular(8),
+        color: _focus.hasFocus ? widget.focusedFillColor : widget.fillColor,
+        borderRadius: BorderRadius.circular(widget.radius),
         boxShadow: widget.shadow ? AppShadows.sm : null,
         border: widget.errorBorder
             ? Border.all(color: AppColors.error, width: 1.5)

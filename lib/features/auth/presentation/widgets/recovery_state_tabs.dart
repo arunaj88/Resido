@@ -3,8 +3,6 @@ import 'package:resido/app/theme/app_colors.dart';
 import 'package:resido/app/theme/app_text_styles.dart';
 import 'package:resido/features/auth/presentation/screens/recovery_feedback_screen.dart';
 
-
-
 /// Segmented switcher across the top of the recovery feedback screen.
 class RecoveryStateTabs extends StatelessWidget {
   const RecoveryStateTabs({
@@ -17,9 +15,19 @@ class RecoveryStateTabs extends StatelessWidget {
   final ValueChanged<RecoveryFeedbackState> onSelected;
 
   static const _tabs = [
-    (RecoveryFeedbackState.linkSent, Icons.mark_email_read, Icons.mark_email_read_outlined, 'Link Sent'),
+    (
+      RecoveryFeedbackState.linkSent,
+      Icons.mark_email_read,
+      Icons.mark_email_read_outlined,
+      'Link Sent',
+    ),
     (RecoveryFeedbackState.failed, Icons.error, Icons.error_outline, 'Failed'),
-    (RecoveryFeedbackState.verifyAccount, Icons.mail, Icons.mail_outline, 'Verify Account'),
+    (
+      RecoveryFeedbackState.verifyAccount,
+      Icons.mail,
+      Icons.mail_outline,
+      'Verify Account',
+    ),
     (RecoveryFeedbackState.submitting, Icons.sync, Icons.sync, 'Submitting'),
   ];
 
@@ -98,7 +106,9 @@ class _Tab extends StatelessWidget {
           duration: const Duration(milliseconds: 200),
           padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 6),
           decoration: BoxDecoration(
-            color: selected ? AppColors.surfaceContainerLowest : Colors.transparent,
+            color: selected
+                ? AppColors.surfaceContainerLowest
+                : Colors.transparent,
             borderRadius: BorderRadius.circular(8),
             boxShadow: selected ? AppShadows.sm : null,
           ),
@@ -108,10 +118,7 @@ class _Tab extends StatelessWidget {
             children: [
               Icon(icon, size: 15, color: color),
               const SizedBox(width: 4),
-              if (fitContent)
-                text
-              else
-                Flexible(child: text),
+              if (fitContent) text else Flexible(child: text),
             ],
           ),
         ),

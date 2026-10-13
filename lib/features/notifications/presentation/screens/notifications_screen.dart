@@ -7,8 +7,6 @@ import 'package:resido/app/theme/app_text_styles.dart';
 import 'package:resido/features/notifications/data/notifications_mock_data.dart';
 import 'package:resido/features/notifications/presentation/widgets/notification_card.dart';
 
-
-
 enum _Filter {
   all('All', null),
   rent('Rent Dues', NotificationCategory.rent),
@@ -20,7 +18,8 @@ enum _Filter {
   final String label;
   final NotificationCategory? category;
 
-  bool matches(MockNotification n) => category == null || n.category == category;
+  bool matches(MockNotification n) =>
+      category == null || n.category == category;
 }
 
 /// 08. Notifications. Read state and filters are local UI state only; no
@@ -46,9 +45,16 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
 
   void _open(MockNotification n) {
     setState(() => _read.add(n.id));
+    if (n.category == NotificationCategory.maintenance) {
+      Navigator.of(context).pushNamed(AppRoutes.maintenance);
+      return;
+    }
     final (title, icon) = switch (n.category) {
       NotificationCategory.rent => ('Rent Details', Icons.currency_rupee),
-      NotificationCategory.maintenance => ('Maintenance Request', Icons.build_outlined),
+      NotificationCategory.maintenance => (
+        'Maintenance Request',
+        Icons.build_outlined,
+      ),
       NotificationCategory.system => ('Tenant Details', Icons.group_outlined),
     };
     AppRoutes.openComingSoon(context, title, icon);
@@ -57,7 +63,9 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
   @override
   Widget build(BuildContext context) {
     final visible = _items.where(_filter.matches).toList();
-    final today = visible.where((n) => n.section == NotificationSection.today).toList();
+    final today = visible
+        .where((n) => n.section == NotificationSection.today)
+        .toList();
     final earlier = visible
         .where((n) => n.section == NotificationSection.earlierThisWeek)
         .toList();
@@ -65,7 +73,9 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     return Scaffold(
       appBar: const _NotificationsTopBar(),
       body: ListView(
-        padding: EdgeInsets.only(bottom: MediaQuery.paddingOf(context).bottom + 16),
+        padding: EdgeInsets.only(
+          bottom: MediaQuery.paddingOf(context).bottom + 16,
+        ),
         children: [
           _UnreadBar(
             unread: _unreadCount,
@@ -116,7 +126,8 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
   }
 }
 
-class _NotificationsTopBar extends StatelessWidget implements PreferredSizeWidget {
+class _NotificationsTopBar extends StatelessWidget
+    implements PreferredSizeWidget {
   const _NotificationsTopBar();
 
   @override
@@ -127,7 +138,11 @@ class _NotificationsTopBar extends StatelessWidget implements PreferredSizeWidge
     return DecoratedBox(
       decoration: const BoxDecoration(
         boxShadow: [
-          BoxShadow(color: Color(0x0A064E3B), offset: Offset(0, 1), blurRadius: 8),
+          BoxShadow(
+            color: Color(0x0A064E3B),
+            offset: Offset(0, 1),
+            blurRadius: 8,
+          ),
         ],
       ),
       child: ClipRect(
@@ -163,7 +178,9 @@ class _NotificationsTopBar extends StatelessWidget implements PreferredSizeWidge
                           'Notifications',
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: AppTextStyles.titleLg.copyWith(letterSpacing: -0.4),
+                          style: AppTextStyles.titleLg.copyWith(
+                            letterSpacing: -0.4,
+                          ),
                         ),
                       ),
                       Container(
@@ -173,7 +190,11 @@ class _NotificationsTopBar extends StatelessWidget implements PreferredSizeWidge
                           color: AppColors.primary,
                           shape: BoxShape.circle,
                         ),
-                        child: const Icon(Icons.person, size: 18, color: AppColors.onPrimary),
+                        child: const Icon(
+                          Icons.person,
+                          size: 18,
+                          color: AppColors.onPrimary,
+                        ),
                       ),
                     ],
                   ),
@@ -293,7 +314,9 @@ class _Pill extends StatelessWidget {
           duration: const Duration(milliseconds: 150),
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
           decoration: BoxDecoration(
-            color: selected ? AppColors.primaryContainer : AppColors.surfaceContainerLow,
+            color: selected
+                ? AppColors.primaryContainer
+                : AppColors.surfaceContainerLow,
             borderRadius: BorderRadius.circular(999),
             boxShadow: selected ? AppShadows.sm : null,
           ),
@@ -305,10 +328,15 @@ class _Pill extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 6),
                 decoration: BoxDecoration(
-                  color: selected ? AppColors.secondary : AppColors.surfaceVariant,
+                  color: selected
+                      ? AppColors.secondary
+                      : AppColors.surfaceVariant,
                   borderRadius: BorderRadius.circular(999),
                 ),
-                child: Text('$count', style: AppTextStyles.labelSm.copyWith(color: fg)),
+                child: Text(
+                  '$count',
+                  style: AppTextStyles.labelSm.copyWith(color: fg),
+                ),
               ),
             ],
           ),
@@ -355,7 +383,9 @@ class _Section extends StatelessWidget {
             const Spacer(),
             Text(
               '${items.length} ${items.length == 1 ? 'update' : 'updates'}',
-              style: AppTextStyles.labelSm.copyWith(color: AppColors.onSurfaceVariant),
+              style: AppTextStyles.labelSm.copyWith(
+                color: AppColors.onSurfaceVariant,
+              ),
             ),
           ],
         ),
@@ -369,10 +399,10 @@ class _Section extends StatelessWidget {
             // WhatsApp needs an external service: shown, no effect yet.
             onAction: item.action == NotificationAction.viewReceipt
                 ? () => AppRoutes.openComingSoon(
-                      context,
-                      'Receipt',
-                      Icons.receipt_long_outlined,
-                    )
+                    context,
+                    'Receipt',
+                    Icons.receipt_long_outlined,
+                  )
                 : null,
           ),
         ],
@@ -401,9 +431,18 @@ class _EmptyStatePreview extends StatelessWidget {
         children: [
           Row(
             children: [
-              const Icon(Icons.spa_outlined, size: 20, color: AppColors.secondary),
+              const Icon(
+                Icons.spa_outlined,
+                size: 20,
+                color: AppColors.secondary,
+              ),
               const SizedBox(width: 4),
-              Expanded(child: Text('Inbox Status Preview', style: AppTextStyles.labelLg)),
+              Expanded(
+                child: Text(
+                  'Inbox Status Preview',
+                  style: AppTextStyles.labelLg,
+                ),
+              ),
               Material(
                 color: AppColors.surfaceContainerLowest,
                 borderRadius: BorderRadius.circular(999),
@@ -412,7 +451,10 @@ class _EmptyStatePreview extends StatelessWidget {
                   borderRadius: BorderRadius.circular(999),
                   onTap: onToggle,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 4,
+                    ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(999),
                       boxShadow: AppShadows.sm,
@@ -476,7 +518,10 @@ class _EmptyStatePreview extends StatelessWidget {
                   ),
                   const SizedBox(height: 12),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 4,
+                    ),
                     decoration: BoxDecoration(
                       color: AppColors.surfaceContainer,
                       borderRadius: BorderRadius.circular(999),

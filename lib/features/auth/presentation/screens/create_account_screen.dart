@@ -8,7 +8,6 @@ import 'package:resido/features/auth/presentation/widgets/auth_text_field.dart';
 import 'package:resido/features/auth/presentation/widgets/auth_top_bar.dart';
 import 'package:resido/features/auth/presentation/widgets/info_pill.dart';
 
-
 /// 02. Create Account. The primary action only opens the "Verify Account"
 /// feedback state; no account is created.
 class CreateAccountScreen extends StatefulWidget {
@@ -231,7 +230,11 @@ class _FieldLabel extends StatelessWidget {
 }
 
 class _HelperText extends StatelessWidget {
-  const _HelperText({required this.icon, required this.text, this.iconSize = 14});
+  const _HelperText({
+    required this.icon,
+    required this.text,
+    this.iconSize = 14,
+  });
 
   final IconData icon;
   final String text;
@@ -266,7 +269,9 @@ class _VisibilityToggle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FieldIconButton(
-      icon: obscured ? Icons.visibility_outlined : Icons.visibility_off_outlined,
+      icon: obscured
+          ? Icons.visibility_outlined
+          : Icons.visibility_off_outlined,
       tooltip: obscured ? 'Show password' : 'Hide password',
       onPressed: onPressed,
     );
@@ -301,11 +306,17 @@ class _StrengthCard extends StatelessWidget {
                   ),
                 ),
               ),
-              const Icon(Icons.shield_outlined, size: 15, color: AppColors.secondary),
+              const Icon(
+                Icons.shield_outlined,
+                size: 15,
+                color: AppColors.secondary,
+              ),
               const SizedBox(width: 4),
               Text(
                 'Strong',
-                style: AppTextStyles.labelMd.copyWith(color: AppColors.secondary),
+                style: AppTextStyles.labelMd.copyWith(
+                  color: AppColors.secondary,
+                ),
               ),
             ],
           ),
@@ -438,7 +449,9 @@ class _SignInPrompt extends StatelessWidget {
         children: [
           Text(
             'Already have a Resido account?',
-            style: AppTextStyles.bodyMd.copyWith(color: AppColors.onSurfaceVariant),
+            style: AppTextStyles.bodyMd.copyWith(
+              color: AppColors.onSurfaceVariant,
+            ),
           ),
           InkWell(
             borderRadius: BorderRadius.circular(4),
@@ -448,10 +461,16 @@ class _SignInPrompt extends StatelessWidget {
               children: [
                 Text(
                   'Sign In',
-                  style: AppTextStyles.labelLg.copyWith(color: AppColors.secondary),
+                  style: AppTextStyles.labelLg.copyWith(
+                    color: AppColors.secondary,
+                  ),
                 ),
                 const SizedBox(width: 2),
-                const Icon(Icons.chevron_right, size: 16, color: AppColors.secondary),
+                const Icon(
+                  Icons.chevron_right,
+                  size: 16,
+                  color: AppColors.secondary,
+                ),
               ],
             ),
           ),

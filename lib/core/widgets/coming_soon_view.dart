@@ -2,16 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:resido/app/theme/app_colors.dart';
 import 'package:resido/app/theme/app_text_styles.dart';
 
-
-
 /// Body for temporary placeholder destinations that belong to later
 /// batches. Clearly labelled so it is never mistaken for a finished screen.
 class ComingSoonView extends StatelessWidget {
-  const ComingSoonView({
-    super.key,
-    required this.title,
-    required this.icon,
-  });
+  const ComingSoonView({super.key, required this.title, required this.icon});
 
   final String title;
   final IconData icon;
@@ -34,7 +28,11 @@ class ComingSoonView extends StatelessWidget {
               child: Icon(icon, size: 32, color: AppColors.primaryContainer),
             ),
             const SizedBox(height: 16),
-            Text(title, textAlign: TextAlign.center, style: AppTextStyles.headlineSm),
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              style: AppTextStyles.headlineSm,
+            ),
             const SizedBox(height: 6),
             Text(
               'Placeholder — this screen is built in a later batch.',

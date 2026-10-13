@@ -75,11 +75,11 @@ void main() {
     await tapVisible(tester, button('Sign In'));
 
     EditableText password() => tester.widget<EditableText>(
-          find.descendant(
-            of: find.widgetWithText(TextField, 'Kochi@2024Estate!'),
-            matching: find.byType(EditableText),
-          ),
-        );
+      find.descendant(
+        of: find.widgetWithText(TextField, 'Kochi@2024Estate!'),
+        matching: find.byType(EditableText),
+      ),
+    );
     expect(password().obscureText, isTrue);
     await tester.tap(find.byTooltip('Show password'));
     await tester.pump();
@@ -91,27 +91,29 @@ void main() {
     expect(navigator(tester).canPop(), isFalse);
   });
 
-  testWidgets('Forgot Password flows to the link-sent state and back to Sign In',
-      (tester) async {
-    await launchToWelcome(tester);
-    await tapVisible(tester, button('Sign In'));
+  testWidgets(
+    'Forgot Password flows to the link-sent state and back to Sign In',
+    (tester) async {
+      await launchToWelcome(tester);
+      await tapVisible(tester, button('Sign In'));
 
-    await tapVisible(tester, find.text('Forgot Password?'));
-    expect(find.byType(ForgotPasswordScreen), findsOneWidget);
+      await tapVisible(tester, find.text('Forgot Password?'));
+      expect(find.byType(ForgotPasswordScreen), findsOneWidget);
 
-    await tester.enterText(find.byType(TextField), 'owner@keralaestates.in');
-    await tester.pump();
-    expect(find.text('Verified format'), findsOneWidget);
+      await tester.enterText(find.byType(TextField), 'owner@keralaestates.in');
+      await tester.pump();
+      expect(find.text('Verified format'), findsOneWidget);
 
-    await tapVisible(tester, button('Send Reset Link'));
-    expect(find.byType(RecoveryFeedbackScreen), findsOneWidget);
-    expect(find.text('Check your email'), findsOneWidget);
+      await tapVisible(tester, button('Send Reset Link'));
+      expect(find.byType(RecoveryFeedbackScreen), findsOneWidget);
+      expect(find.text('Check your email'), findsOneWidget);
 
-    await tapVisible(tester, button('Return to Sign In'));
-    expect(find.byType(SignInScreen), findsOneWidget);
-    await goBack(tester);
-    expect(find.byType(WelcomeScreen), findsOneWidget);
-  });
+      await tapVisible(tester, button('Return to Sign In'));
+      expect(find.byType(SignInScreen), findsOneWidget);
+      await goBack(tester);
+      expect(find.byType(WelcomeScreen), findsOneWidget);
+    },
+  );
 
   testWidgets('Forgot Password back links return to Sign In', (tester) async {
     await launchToWelcome(tester);

@@ -4,8 +4,6 @@ import 'package:resido/features/dashboard/presentation/widgets/empty_dashboard_v
 import 'package:resido/features/home/presentation/widgets/home_top_bar.dart';
 import 'package:resido/features/home/presentation/widgets/resido_bottom_nav.dart';
 
-
-
 /// Dashboard tab. Shows the populated portfolio (Stitch "06. Dashboard") or,
 /// for a landlord with no properties yet, the empty state (Stitch
 /// "09. Empty Dashboard"). The state is local presentation only.

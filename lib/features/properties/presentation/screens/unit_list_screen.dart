@@ -97,10 +97,10 @@ class _UnitListScreenState extends State<UnitListScreen> {
                     unit: unit,
                     onEdit: () =>
                         AppRoutes.openUnitForm(context, _property, unit: unit),
-                    onAssignTenant: () => AppRoutes.openComingSoon(
+                    onAssignTenant: () => AppRoutes.openAssignTenant(
                       context,
-                      'Assign Tenant',
-                      Icons.person_add_alt_outlined,
+                      property: _property,
+                      unit: unit,
                     ),
                   ),
                 ],

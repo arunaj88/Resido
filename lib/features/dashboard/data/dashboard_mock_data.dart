@@ -3,8 +3,7 @@
 library;
 
 import 'package:resido/core/utils/inr_format.dart';
-
-
+import 'package:resido/features/maintenance/data/maintenance_mock_data.dart';
 
 class DashboardMetric {
   const DashboardMetric({
@@ -115,10 +114,14 @@ abstract final class DashboardMockData {
     ),
     PendingAction(
       kind: PendingActionKind.maintenance,
+      // Short form of Maintenance request #MNT-2024-PG-04 (the full title
+      // does not fit this one-line card).
       title: 'Master Bath Pipe Leak',
-      subtitle: 'Riverdale Complex #104 • Tenant Reported',
+      subtitle:
+          '${MaintenanceMockData.seepage.property.name} · Unit 102 '
+          '• Tenant Reported',
       badge: 'High Priority',
-      footnote: 'Raised yesterday, 4:15 PM',
+      footnote: 'Raised yesterday, 5:30 PM',
     ),
   ];
 

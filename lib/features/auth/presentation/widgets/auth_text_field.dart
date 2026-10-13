@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:resido/app/theme/app_colors.dart';
 import 'package:resido/app/theme/app_text_styles.dart';
 
-
-
 /// 52px rounded input with a leading icon, as used by the auth forms.
 class AuthTextField extends StatelessWidget {
   const AuthTextField({
@@ -174,9 +172,7 @@ class AuthCheckbox extends StatelessWidget {
                 ? AppColors.primaryContainer
                 : AppColors.surfaceContainerLowest,
             borderRadius: BorderRadius.circular(radius),
-            border: value
-                ? null
-                : Border.all(color: AppColors.outlineVariant),
+            border: value ? null : Border.all(color: AppColors.outlineVariant),
             boxShadow: AppShadows.sm,
           ),
           child: value

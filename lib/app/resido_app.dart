@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:resido/app/router/app_routes.dart';
 import 'package:resido/app/theme/app_theme.dart';
 
-
 class ResidoApp extends StatelessWidget {
   const ResidoApp({super.key});
 

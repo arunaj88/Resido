@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:resido/app/router/app_routes.dart';
-import 'package:resido/core/widgets/coming_soon_view.dart';
 import 'package:resido/features/dashboard/presentation/screens/dashboard_tab.dart';
-import 'package:resido/features/home/presentation/widgets/home_top_bar.dart';
 import 'package:resido/features/home/presentation/widgets/resido_bottom_nav.dart';
+import 'package:resido/features/profile/presentation/screens/profile_tab.dart';
 import 'package:resido/features/properties/presentation/screens/property_list_tab.dart';
+import 'package:resido/features/rent/presentation/screens/rent_tab.dart';
+import 'package:resido/features/tenants/presentation/screens/tenant_list_tab.dart';
 
 /// Arguments for [AppRoutes.home].
 class HomeArgs {
@@ -58,12 +59,18 @@ class _HomeShellState extends State<HomeShell> {
                   onOpenNotifications: _openNotifications,
                   onOpenProfile: () => _select(HomeTab.profile),
                 )
-              else
-                _PlaceholderTab(
-                  tab: tab,
+              else if (tab == HomeTab.tenants)
+                TenantListTab(
                   onOpenNotifications: _openNotifications,
                   onOpenProfile: () => _select(HomeTab.profile),
-                ),
+                )
+              else if (tab == HomeTab.rent)
+                RentTab(
+                  onOpenNotifications: _openNotifications,
+                  onOpenProfile: () => _select(HomeTab.profile),
+                )
+              else
+                ProfileTab(onOpenNotifications: _openNotifications),
           ],
         ),
         bottomNavigationBar: ResidoBottomNav(
@@ -71,31 +78,6 @@ class _HomeShellState extends State<HomeShell> {
           onSelected: _select,
         ),
       ),
-    );
-  }
-}
-
-/// Later-batch tab (Tenants, Rent, Profile).
-class _PlaceholderTab extends StatelessWidget {
-  const _PlaceholderTab({
-    required this.tab,
-    required this.onOpenNotifications,
-    required this.onOpenProfile,
-  });
-
-  final HomeTab tab;
-  final VoidCallback onOpenNotifications;
-  final VoidCallback onOpenProfile;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: HomeTopBar(
-        section: tab.label,
-        onNotifications: onOpenNotifications,
-        onAvatar: onOpenProfile,
-      ),
-      body: ComingSoonView(title: tab.label, icon: tab.selectedIcon),
     );
   }
 }

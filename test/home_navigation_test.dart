@@ -5,14 +5,18 @@ import 'package:resido/app/router/app_routes.dart';
 import 'package:resido/app/theme/app_colors.dart';
 import 'package:resido/app/theme/app_theme.dart';
 import 'package:resido/core/utils/inr_format.dart';
-import 'package:resido/core/widgets/coming_soon_view.dart';
 import 'package:resido/features/dashboard/presentation/widgets/dashboard_view.dart';
 import 'package:resido/features/dashboard/presentation/widgets/empty_dashboard_view.dart';
 import 'package:resido/features/home/presentation/screens/home_shell.dart';
+import 'package:resido/features/maintenance/presentation/screens/maintenance_list_screen.dart';
 import 'package:resido/features/home/presentation/widgets/resido_bottom_nav.dart';
 import 'package:resido/features/notifications/presentation/screens/notifications_screen.dart';
+import 'package:resido/features/profile/presentation/screens/profile_tab.dart';
 import 'package:resido/features/properties/presentation/screens/add_property_screen.dart';
 import 'package:resido/features/properties/presentation/screens/property_list_tab.dart';
+import 'package:resido/features/rent/presentation/screens/rent_tab.dart';
+import 'package:resido/features/tenants/presentation/screens/add_tenant_screen.dart';
+import 'package:resido/features/tenants/presentation/screens/tenant_list_tab.dart';
 
 import 'test_helpers.dart';
 
@@ -88,15 +92,17 @@ void main() {
     await settle(tester);
     expect(find.byType(PropertyListTab).hitTestable(), findsOneWidget);
 
-    for (final tab in [HomeTab.tenants, HomeTab.rent, HomeTab.profile]) {
-      await tester.tap(navItem(tab));
-      await settle(tester);
-      final shownTitle = find.descendant(
-        of: find.byType(ComingSoonView),
-        matching: find.text(tab.label),
-      );
-      expect(shownTitle.hitTestable(), findsOneWidget, reason: tab.label);
-    }
+    await tester.tap(navItem(HomeTab.tenants));
+    await settle(tester);
+    expect(find.byType(TenantListTab).hitTestable(), findsOneWidget);
+
+    await tester.tap(navItem(HomeTab.rent));
+    await settle(tester);
+    expect(find.byType(RentTab).hitTestable(), findsOneWidget);
+
+    await tester.tap(navItem(HomeTab.profile));
+    await settle(tester);
+    expect(find.byType(ProfileTab).hitTestable(), findsOneWidget);
 
     // System back from a non-dashboard tab goes to Dashboard, not out.
     await tester.binding.handlePopRoute();
@@ -115,7 +121,7 @@ void main() {
     expect(find.byType(DashboardView), findsOneWidget);
   });
 
-  testWidgets('Dashboard actions open placeholders and the Rent tab', (
+  testWidgets('Dashboard actions open their screens and the Rent tab', (
     tester,
   ) async {
     await pumpHome(tester);
@@ -125,13 +131,18 @@ void main() {
     await tester.pageBack();
     await settle(tester);
 
+    await tapVisible(tester, find.text('Add Tenant'));
+    expect(find.byType(AddTenantScreen), findsOneWidget);
+    await tester.pageBack();
+    await settle(tester);
+
     await tester.scrollUntilVisible(
       find.text('Assign Plumber'),
       300,
       scrollable: find.byType(Scrollable).first,
     );
     await tapVisible(tester, find.text('Assign Plumber'));
-    expect(find.text('Maintenance Request'), findsWidgets);
+    expect(find.byType(MaintenanceListScreen), findsOneWidget);
     await tester.pageBack();
     await settle(tester);
 
@@ -141,15 +152,7 @@ void main() {
       scrollable: find.byType(Scrollable).first,
     );
     await tapVisible(tester, find.text('October Rent Collection'));
-    expect(
-      find
-          .descendant(
-            of: find.byType(ComingSoonView),
-            matching: find.text('Rent'),
-          )
-          .hitTestable(),
-      findsOneWidget,
-    );
+    expect(find.byType(RentTab).hitTestable(), findsOneWidget);
   });
 
   testWidgets('Empty Dashboard: add property and explore preview', (
@@ -189,7 +192,7 @@ void main() {
     expect(find.text('Earlier This Week'), findsNothing);
 
     await tapVisible(tester, find.text('Plumbing Request Updated'));
-    expect(find.byType(ComingSoonScreen), findsOneWidget);
+    expect(find.byType(MaintenanceListScreen), findsOneWidget);
     await tester.pageBack();
     await settle(tester);
     expect(find.byType(NotificationsScreen), findsOneWidget);

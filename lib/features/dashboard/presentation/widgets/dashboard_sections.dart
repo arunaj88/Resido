@@ -4,8 +4,6 @@ import 'package:resido/app/theme/app_text_styles.dart';
 import 'package:resido/core/widgets/app_card.dart';
 import 'package:resido/features/dashboard/data/dashboard_mock_data.dart';
 
-
-
 /// Section title with an optional trailing link or label.
 class DashboardSectionHeader extends StatelessWidget {
   const DashboardSectionHeader({
@@ -44,13 +42,17 @@ class SectionLink extends StatelessWidget {
   Widget build(BuildContext context) {
     final text = Text(
       label,
-      style: style ?? AppTextStyles.labelMd.copyWith(color: AppColors.secondary),
+      style:
+          style ?? AppTextStyles.labelMd.copyWith(color: AppColors.secondary),
     );
     if (onTap == null) return text;
     return InkWell(
       borderRadius: BorderRadius.circular(4),
       onTap: onTap,
-      child: Padding(padding: const EdgeInsets.symmetric(vertical: 4), child: text),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 4),
+        child: text,
+      ),
     );
   }
 }
@@ -143,7 +145,10 @@ class _QuickAction extends StatelessWidget {
             Container(
               width: 44,
               height: 44,
-              decoration: BoxDecoration(color: background, shape: BoxShape.circle),
+              decoration: BoxDecoration(
+                color: background,
+                shape: BoxShape.circle,
+              ),
               child: Icon(icon, size: 22, color: color),
             ),
             const SizedBox(height: 8),
@@ -208,7 +213,10 @@ class PendingActionsSection extends StatelessWidget {
 }
 
 class _PendingActionCard extends StatelessWidget {
-  const _PendingActionCard({required this.action, required this.onAssignPlumber});
+  const _PendingActionCard({
+    required this.action,
+    required this.onAssignPlumber,
+  });
 
   final PendingAction action;
   final VoidCallback onAssignPlumber;
@@ -217,62 +225,62 @@ class _PendingActionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final (iconBg, iconFg, icon, badgeBg, badgeFg) = switch (action.kind) {
       PendingActionKind.overdueRent => (
-          AppColors.errorContainer,
-          AppColors.error,
-          Icons.warning_amber,
-          AppColors.errorContainer,
-          AppColors.onErrorContainer,
-        ),
+        AppColors.errorContainer,
+        AppColors.error,
+        Icons.warning_amber,
+        AppColors.errorContainer,
+        AppColors.onErrorContainer,
+      ),
       PendingActionKind.dueSoonRent => (
-          AppColors.tertiaryFixed,
-          AppColors.onTertiaryFixed,
-          Icons.calendar_today_outlined,
-          AppColors.tertiaryFixed,
-          AppColors.onTertiaryFixedVariant,
-        ),
+        AppColors.tertiaryFixed,
+        AppColors.onTertiaryFixed,
+        Icons.calendar_today_outlined,
+        AppColors.tertiaryFixed,
+        AppColors.onTertiaryFixedVariant,
+      ),
       PendingActionKind.maintenance => (
-          AppColors.surfaceContainerHigh,
-          AppColors.onSurfaceVariant,
-          Icons.plumbing,
-          AppColors.errorContainer,
-          AppColors.onErrorContainer,
-        ),
+        AppColors.surfaceContainerHigh,
+        AppColors.onSurfaceVariant,
+        Icons.plumbing,
+        AppColors.errorContainer,
+        AppColors.onErrorContainer,
+      ),
     };
 
     // Call / WhatsApp / reminder actions need external services, so they
     // are shown per design without an effect in this UI-only phase.
     final buttons = switch (action.kind) {
       PendingActionKind.overdueRent => [
-          const _ChipButton(
-            icon: Icons.phone_outlined,
-            label: 'Call',
-            background: AppColors.surfaceContainer,
-            foreground: AppColors.primaryContainer,
-          ),
-          const _ChipButton(
-            icon: Icons.send_outlined,
-            label: 'WhatsApp Notice',
-            background: AppColors.primaryContainer,
-            foreground: AppColors.onPrimary,
-          ),
-        ],
+        const _ChipButton(
+          icon: Icons.phone_outlined,
+          label: 'Call',
+          background: AppColors.surfaceContainer,
+          foreground: AppColors.primaryContainer,
+        ),
+        const _ChipButton(
+          icon: Icons.send_outlined,
+          label: 'WhatsApp Notice',
+          background: AppColors.primaryContainer,
+          foreground: AppColors.onPrimary,
+        ),
+      ],
       PendingActionKind.dueSoonRent => [
-          const _ChipButton(
-            icon: Icons.notifications_active_outlined,
-            label: 'Send Reminder',
-            background: AppColors.secondaryFixed,
-            foreground: AppColors.onSecondaryFixed,
-          ),
-        ],
+        const _ChipButton(
+          icon: Icons.notifications_active_outlined,
+          label: 'Send Reminder',
+          background: AppColors.secondaryFixed,
+          foreground: AppColors.onSecondaryFixed,
+        ),
+      ],
       PendingActionKind.maintenance => [
-          _ChipButton(
-            icon: Icons.engineering_outlined,
-            label: 'Assign Plumber',
-            background: AppColors.primaryContainer,
-            foreground: AppColors.onPrimary,
-            onTap: onAssignPlumber,
-          ),
-        ],
+        _ChipButton(
+          icon: Icons.engineering_outlined,
+          label: 'Assign Plumber',
+          background: AppColors.primaryContainer,
+          foreground: AppColors.onPrimary,
+          onTap: onAssignPlumber,
+        ),
+      ],
     };
 
     return AppCard(
@@ -286,7 +294,10 @@ class _PendingActionCard extends StatelessWidget {
                 width: 36,
                 height: 36,
                 margin: const EdgeInsets.only(top: 2),
-                decoration: BoxDecoration(color: iconBg, shape: BoxShape.circle),
+                decoration: BoxDecoration(
+                  color: iconBg,
+                  shape: BoxShape.circle,
+                ),
                 child: Icon(icon, size: 20, color: iconFg),
               ),
               const SizedBox(width: 12),
@@ -337,7 +348,9 @@ class _PendingActionCard extends StatelessWidget {
                   action.footnote,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: AppTextStyles.labelSm.copyWith(color: AppColors.outline),
+                  style: AppTextStyles.labelSm.copyWith(
+                    color: AppColors.outline,
+                  ),
                 ),
               ),
               for (final (i, button) in buttons.indexed) ...[
@@ -382,7 +395,10 @@ class _ChipButton extends StatelessWidget {
             children: [
               Icon(icon, size: 16, color: foreground),
               const SizedBox(width: 4),
-              Text(label, style: AppTextStyles.labelMd.copyWith(color: foreground)),
+              Text(
+                label,
+                style: AppTextStyles.labelMd.copyWith(color: foreground),
+              ),
             ],
           ),
         ),
@@ -553,7 +569,9 @@ class _ActivityRow extends StatelessWidget {
             height: 36,
             margin: const EdgeInsets.only(top: 2),
             decoration: BoxDecoration(
-              color: rent ? AppColors.secondaryFixed : AppColors.surfaceContainerHigh,
+              color: rent
+                  ? AppColors.secondaryFixed
+                  : AppColors.surfaceContainerHigh,
               shape: BoxShape.circle,
             ),
             child: Icon(
@@ -580,7 +598,9 @@ class _ActivityRow extends StatelessWidget {
                     const SizedBox(width: 8),
                     Text(
                       item.time,
-                      style: AppTextStyles.labelSm.copyWith(color: AppColors.outline),
+                      style: AppTextStyles.labelSm.copyWith(
+                        color: AppColors.outline,
+                      ),
                     ),
                   ],
                 ),
@@ -589,7 +609,9 @@ class _ActivityRow extends StatelessWidget {
                   item.subtitle,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: AppTextStyles.bodySm.copyWith(color: AppColors.onSurfaceVariant),
+                  style: AppTextStyles.bodySm.copyWith(
+                    color: AppColors.onSurfaceVariant,
+                  ),
                 ),
                 const SizedBox(height: 4),
                 Wrap(
@@ -598,20 +620,27 @@ class _ActivityRow extends StatelessWidget {
                   crossAxisAlignment: WrapCrossAlignment.center,
                   children: [
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 6,
+                        vertical: 2,
+                      ),
                       decoration: BoxDecoration(
                         color: AppColors.surfaceContainer,
                         borderRadius: BorderRadius.circular(4),
                       ),
                       child: Text(
                         item.tag,
-                        style: AppTextStyles.labelSm.copyWith(color: AppColors.outline),
+                        style: AppTextStyles.labelSm.copyWith(
+                          color: AppColors.outline,
+                        ),
                       ),
                     ),
                     Text(
                       item.note,
                       style: AppTextStyles.labelSm.copyWith(
-                        color: rent ? AppColors.secondary : AppColors.primaryContainer,
+                        color: rent
+                            ? AppColors.secondary
+                            : AppColors.primaryContainer,
                         fontWeight: rent ? FontWeight.w500 : FontWeight.w600,
                       ),
                     ),
@@ -639,7 +668,11 @@ class MonsoonTipCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          const Icon(Icons.water_drop_outlined, size: 24, color: AppColors.secondary),
+          const Icon(
+            Icons.water_drop_outlined,
+            size: 24,
+            color: AppColors.secondary,
+          ),
           const SizedBox(width: 12),
           Expanded(
             child: Column(

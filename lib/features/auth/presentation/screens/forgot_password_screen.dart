@@ -10,7 +10,6 @@ import 'package:resido/features/auth/presentation/widgets/auth_text_field.dart';
 import 'package:resido/features/auth/presentation/widgets/auth_top_bar.dart';
 import 'package:resido/features/auth/presentation/widgets/info_pill.dart';
 
-
 /// 04. Forgot Password. "Send Reset Link" only opens the recovery feedback
 /// screen; no email is sent.
 class ForgotPasswordScreen extends StatefulWidget {
@@ -78,7 +77,10 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   onPressed: () => Navigator.of(context).maybePop(),
                   style: TextButton.styleFrom(
                     foregroundColor: AppColors.secondary,
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 8,
+                    ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -86,7 +88,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   icon: const Icon(Icons.arrow_back, size: 18),
                   label: Text(
                     'Back to Sign In',
-                    style: AppTextStyles.titleLg.copyWith(color: AppColors.secondary),
+                    style: AppTextStyles.titleLg.copyWith(
+                      color: AppColors.secondary,
+                    ),
                   ),
                 ),
               ),
@@ -115,11 +119,17 @@ class _TopRow extends StatelessWidget {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Icon(Icons.arrow_back, size: 20, color: AppColors.secondary),
+                  const Icon(
+                    Icons.arrow_back,
+                    size: 20,
+                    color: AppColors.secondary,
+                  ),
                   const SizedBox(width: 4),
                   Text(
                     'Sign In',
-                    style: AppTextStyles.labelLg.copyWith(color: AppColors.secondary),
+                    style: AppTextStyles.labelLg.copyWith(
+                      color: AppColors.secondary,
+                    ),
                   ),
                 ],
               ),
@@ -177,7 +187,11 @@ class _Intro extends StatelessWidget {
               shape: BoxShape.circle,
               boxShadow: AppShadows.sm,
             ),
-            child: const Icon(Icons.lock_reset, size: 30, color: AppColors.primary),
+            child: const Icon(
+              Icons.lock_reset,
+              size: 30,
+              color: AppColors.primary,
+            ),
           ),
         ),
         const SizedBox(height: 12),
@@ -274,7 +288,11 @@ class _EmailCard extends StatelessWidget {
               children: [
                 const Padding(
                   padding: EdgeInsets.only(top: 1),
-                  child: Icon(Icons.info_outline, size: 14, color: AppColors.secondary),
+                  child: Icon(
+                    Icons.info_outline,
+                    size: 14,
+                    color: AppColors.secondary,
+                  ),
                 ),
                 const SizedBox(width: 4),
                 Expanded(

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:resido/app/router/app_routes.dart';
 import 'package:resido/app/theme/app_theme.dart';
-import 'package:resido/core/widgets/coming_soon_view.dart';
 import 'package:resido/features/home/presentation/screens/home_shell.dart';
 import 'package:resido/features/home/presentation/widgets/resido_bottom_nav.dart';
 import 'package:resido/features/properties/data/property_mock_data.dart';
@@ -13,6 +12,7 @@ import 'package:resido/features/properties/presentation/screens/property_list_ta
 import 'package:resido/features/properties/presentation/screens/unit_form_screen.dart';
 import 'package:resido/features/properties/presentation/screens/unit_list_screen.dart';
 import 'package:resido/features/properties/presentation/widgets/property_card.dart';
+import 'package:resido/features/tenants/presentation/screens/assign_tenant_screen.dart';
 
 import 'test_helpers.dart';
 
@@ -218,16 +218,16 @@ void main() {
     expect(find.text('Units in Kakkanad Tech Residency'), findsOneWidget);
   });
 
-  testWidgets(
-    'Assign Tenant on a vacant unit opens a later-batch placeholder',
-    (tester) async {
-      await pumpPropertyList(tester);
-      await tapVisible(tester, find.text('Palm Grove Enclave'));
-      await scrollTap(tester, find.text('View All Units'));
-      await scrollTap(tester, find.text('Assign Tenant'));
-      expect(find.byType(ComingSoonScreen), findsOneWidget);
-    },
-  );
+  testWidgets('Assign Tenant on a vacant unit opens the Assign Tenant flow', (
+    tester,
+  ) async {
+    await pumpPropertyList(tester);
+    await tapVisible(tester, find.text('Palm Grove Enclave'));
+    await scrollTap(tester, find.text('View All Units'));
+    await scrollTap(tester, find.text('Assign Tenant'));
+    expect(find.byType(AssignTenantScreen), findsOneWidget);
+    expect(find.text('Unit 201'), findsOneWidget);
+  });
 
   testWidgets('Add Property: PIN feedback and Save returns to the list', (
     tester,
